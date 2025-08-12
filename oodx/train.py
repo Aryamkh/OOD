@@ -7,7 +7,8 @@ from .ema import ModelEMA
 def criterion_with_soft_targets(logits, target, label_smoothing=0.0, num_classes=None):
     if isinstance(target, tuple):
         y_a, y_b, lam = target
-        return lam * F.cross_entropy(logits, y_a, label_smoothing=label_smoothing) + \               (1 - lam) * F.cross_entropy(logits, y_b, label_smoothing=label_smoothing)
+        return lam * F.cross_entropy(logits, y_a, label_smoothing=label_smoothing) + \
+               (1 - lam) * F.cross_entropy(logits, y_b, label_smoothing=label_smoothing)
     else:
         return F.cross_entropy(logits, target, label_smoothing=label_smoothing)
 
